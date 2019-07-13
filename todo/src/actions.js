@@ -1,7 +1,7 @@
 export const ADD_ITEM = 'ADD_ITEM'
 export const TOGGLE_ITEM = 'TOGGLE_ITEM'
 
-export function makeDeposit(name) {
+export function addItem(name) {
 	return {
 		type: ADD_ITEM,
 		payload: {
