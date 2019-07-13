@@ -13,7 +13,8 @@ class TodoForm extends React.Component {
     addTodo = (e) => {
         e.preventDefault();
         const newName = e.target.name.value
-        this.props.addItem({name: newName})
+        this.props.addItem(newName)
+        this.setState({name: ''})
     }
 
 
@@ -29,4 +30,10 @@ class TodoForm extends React.Component {
     }
 }
 
-export default TodoForm;
+const mapStateToProps = (state) => { return { todoItems: state.todoItems } }
+
+const mapDispatchToProps = {
+	addItem: addItem,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
