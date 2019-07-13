@@ -10,11 +10,13 @@ export function addItem(name) {
 	}
 }
 
-export function toggleItem(name) {
+export function toggleItem(item) {
+	const {name, completed} = item
 	return {
 		type: TOGGLE_ITEM,
 		payload: {
-			name
+			name,
+			completed
 		}
 	}
 }

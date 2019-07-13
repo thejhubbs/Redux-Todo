@@ -13,7 +13,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-	console.log(action)
 	switch (action.type) {
 		case ADD_ITEM: {
 			const { name } = action.payload
@@ -27,11 +26,15 @@ export default function(state = initialState, action) {
         case TOGGLE_ITEM: {
 			const referenceName = action.payload.name
 			const oldCompleted = action.payload.completed
+
+			function checkSame(item) { return item.name !== referenceName }
+
 			//Copy over the todoItems for immutability
-			var newItems = { ...state.todoItems }
+			var newItems = [ ...state.todoItems ]
 			//Filter out except for name, and just add a new one with the opposited of oldCompleted
-			newItems = newItems.filter( name => name !== referenceName ).concat([ { name: referenceName, completed: !oldCompleted } ])
-			
+			newItems = newItems.filter(checkSame)
+			newItems = newItems.concat([ { name: referenceName, completed: !oldCompleted } ])
+
 			return {
 				...state,
 				todoItems: newItems,
